@@ -3,7 +3,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 
 
-sourceCompatibility = 11
+sourceCompatibility = 8
 
 repositories {
     mavenCentral()
