@@ -1,0 +1,4 @@
+rootProject.name = 'spring-vue'
+include 'backend'
+include 'frontend'
+
