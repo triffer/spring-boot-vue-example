@@ -1,7 +1,7 @@
 # Spring Boot Vue.js Example using Gradle
-Since I have been asked many times how to deliver a Vue.js application simply via Spring Boot and most sample projects are 
+This repository contains a basic example project to show how to deliver a Vue.js application via Spring Boot. Because most sample projects are 
 based on Maven, I have created an example using Gradle.
-This repository contains a very simple executable version and in the following I have explained which steps have to be 
+This is a very basic executable version and in the following I have explained which steps have to be 
 done to create an equivalent project.
 
 # Installation steps from scratch
@@ -35,7 +35,7 @@ Since in the Gradle world the output of a build is always contained in the **bui
 ```
 
 ## Defining the landing page
-In this simple example we additionally set the output dir to **'build/dist/public'**, so in the artifact it is included in *WEB-INF/classes/public*.  
+In this basic example we additionally set the output dir to **'build/dist/public'**, so in the artifact it is included in *WEB-INF/classes/public*.  
 Now **WelcomePageHandlerMapping** of spring-boot-autoconfigure will automatically set the index.html as welcome page.  
 Of course the index.html can also be made available via a controller.
 
@@ -56,7 +56,7 @@ Create a Gradle task in the **frontend** module config that will delete the *bui
 For the Vue application to be available as resources in the backend module, a SourceSet must be added in the Gradle config. 
 This configures the dist folder in the output folder of the frontend build as srcDir.
 
-```groovy
+```text
 sourceSets {
     main {
         resources {
@@ -68,13 +68,19 @@ sourceSets {
  
 It is necessary that the build of the backend depends on the frontend, because they are connected by the SourceSet. Therefore
 in the build lifecycle of the backend the build task of the frontend depends on the task **processResources**.
-```groovy
+```text
 processResources.dependsOn ':frontend:npmBuild'
 ```
 
 # Running the application
 You can deploy your application on a server or start it using the **bootRun** task. When opening http://localhost:8080 the Vue application will be displayed. 
 
+# Next Steps
+You can now develop a REST API in the backend e.g. using [Spring Data REST](https://spring.io/projects/spring-data-rest) or [Spring MVC](https://spring.io/guides/tutorials/rest/).
+Then you can use [axios](https://github.com/axios/axios) in the frontend to call the REST API.  
+Of course you shouldn't forget about the [security](https://spring.io/projects/spring-security).
+
 # Using proxy in development
-If you start the Vue application in NodeJs during local development and want to access a REST API on another server, you 
-can set up a proxy in the configuration. The documentation for configuring the proxy can be found [here](https://cli.vuejs.org/config/#devserver-proxy).
+If you start the Vue application in NodeJs during local development and want to access the REST API on another server 
+(e.g. backend deployed on Tomcat), you can set up a proxy in the vue configuration. The documentation for configuring the 
+proxy can be found [here](https://cli.vuejs.org/config/#devserver-proxy).
