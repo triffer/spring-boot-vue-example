@@ -1,6 +1,7 @@
 # Spring Boot Vue.js Example using Gradle
-This repository contains a basic example project to show how to deliver a Vue.js application via Spring Boot. Because most sample projects are 
-based on Maven, I have created an example using Gradle.
+This repository contains a basic example project to show how to deliver a Vue.js application via a Spring Boot application.
+Because most sample projects are based on Maven, I have created an example using Gradle. This example also works
+for other Javascript frameworks.
 This is a very basic executable version and in the following I have explained which steps have to be 
 done to create an equivalent project.
 
@@ -67,7 +68,7 @@ sourceSets {
 ```
  
 It is necessary that the build of the backend depends on the frontend, because they are connected by the SourceSet. Therefore
-in the build lifecycle of the backend the build task of the frontend depends on the task **processResources**.
+in the build cycle of the backend the build task of the frontend depends on the task **processResources**.
 ```text
 processResources.dependsOn ':frontend:npmBuild'
 ```
